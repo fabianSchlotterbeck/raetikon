@@ -180,11 +180,3 @@ bm.scope.less.0 <- bglmer(response_num~question*modal
                         fixef.prior = normal(cov = diag(9,4)),
                         glmerControl(optimizer = c("bobyqa")))
 summary(bm.scope.less.0)
-
-##save models
-save(m.scope.0.0,m.scope.0.1,m.scope.0.3,
-     m.scope.0.4,m.scope.0.5,m.scope.0.6,
-     m.scope.0.7,m.scope.0.8,m.scope.0.9,
-     m.scope.0.all,m.scope.1.8,
-     m.scope.exactly.0,m.scope.0.all,
-     file = "models.RData") #TODO: save Bayesian models
