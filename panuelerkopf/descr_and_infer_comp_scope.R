@@ -91,9 +91,10 @@ items_comp_scope_exactly <- subset(items_comp_scope, type=="exactly")
 m.scope.exactly.0 <- glmer(response_num~question*modal
                            #+ (0 + modal | id) + (0 + modal | item)
                            #+ (1|item)
-                           + (1|id),                         ,
+                           + (1|id),                        
                            family=binomial,
-                           data=items_comp_scope_exactly)
+                           data=items_comp_scope_exactly,
+                           glmerControl(optimizer = c("bobyqa")))
 
 summary(m.scope.exactly.0)
 
@@ -122,8 +123,10 @@ items_comp_scope_less <- subset(items_comp_scope, type=="less")
 m.scope.less.0 <- glmer(response_num~question*modal
                            #+ (0 + modal | id) + (0 + modal | item)
                            #+(1|item)
-                            +(1|id),
-                           family=binomial, data=items_comp_scope_less)
+                        +(1|id),
+                        family=binomial, data=items_comp_scope_less,
+                        glmerControl(optimizer = c("bobyqa"))
+                      )
 summary(m.scope.less.0)
 
 
@@ -134,7 +137,8 @@ items_comp_scope_modal <- subset(items_comp_scope, modal=="present")
 m.scope.modal <- glmer(response_num~type*question
                        #+(1|item)
                        +(1|id),
-                       family=binomial, data=items_comp_scope_modal)
+                       family=binomial, data=items_comp_scope_modal,
+                       glmerControl(optimizer = c("bobyqa")))
 summary(m.scope.modal)
 
 items_comp_scope_nomodal <- subset(items_comp_scope, modal=="absent")
@@ -142,7 +146,8 @@ items_comp_scope_nomodal <- subset(items_comp_scope, modal=="absent")
 m.scope.nomodal <- glmer(response_num~type*question
                          #+(1|item)
                          +(1|id),
-                         family=binomial, data=items_comp_scope_nomodal)
+                         family=binomial, data=items_comp_scope_nomodal,
+                         glmerControl(optimizer = c("bobyqa")))
 summary(m.scope.nomodal)
 
 ##Bayes
